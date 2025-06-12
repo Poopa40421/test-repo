@@ -7,7 +7,7 @@ LOOKUP = {r["id"]: r for r in RECORDS}
 
 
 def create_server():
-    mcp = FastMCP(name="Cupcake MCP", instructions="Search cupcake orders")
+    mcp = FastMCP(name="Cupcake MCP", instructions="Search cupcake orders on server")
 
     @mcp.tool()
     async def search(query: str):
