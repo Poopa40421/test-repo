@@ -5,6 +5,7 @@ from fastmcp.server import FastMCP
 RECORDS = json.loads(Path(__file__).with_name("records.json").read_text())
 LOOKUP = {r["id"]: r for r in RECORDS}
 
+UNUSED_VAR = "Hello, world!"
 
 def create_server():
     mcp = FastMCP(name="Cupcake MCP", instructions="Search cupcake orders on server")
