@@ -5,8 +5,6 @@ from fastmcp.server import FastMCP
 RECORDS = json.loads(Path(__file__).with_name("records.json").read_text())
 LOOKUP = {r["id"]: r for r in RECORDS}
 
-UNUSED_VAR = "Hello, world!"
-
 def create_server():
     mcp = FastMCP(name="Cupcake MCP", instructions="Search cupcake orders on server")
 
@@ -28,6 +26,15 @@ def create_server():
             if any(t in hay for t in toks):
                 ids.append(r["id"])
         return {"ids": ids}
+
+    @mcp.tool()
+    async def fetch(id: str):
+        """
+        Fetch a cupcake order by ID.
+        """
+        if id not in LOOKUP:
+            raise ValueError("unknown id")
+        return LOOKUP[id]
 
     @mcp.tool()
     async def fetch(id: str):
